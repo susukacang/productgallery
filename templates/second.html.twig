@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js" integrity="sha512-C1zvdb9R55RAkl6xCLTPt+Wmcz6s+ccOvcr6G57lbm8M2fbgn2SUjUJbQ13fEyjuLViwe97uJvwa1EUf4F1Akw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" />
+  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/magnifier.css">
+
+    <style>
+        .gallery {
+            width: 510px;
+            margin: 0 auto;
+        }
+        .gallery .slider {
+            float: left;
+            border: solid 1px #aaa;
+            width: 250px;
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .gallery .magnifier-preview {
+            float: left;
+            width: 250px;
+            border: solid 1px #aaa;
+            border-left: 0;
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+
+    <style>
+
+        body { background-color: #fafafa; min-height: 100vh;}
+        .container { margin: 150px auto; max-width: 960px; }
+        .white-popup {
+            position: relative;
+            background: #FFF;
+            padding: 20px;
+            width: auto;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .small-container2{
+        width: 70px;
+        height: 310px;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;rela
+        }
+        .small-container2 div{
+        width: 800%;
+        position: relative;
+        }
+
+        .small-container2 .show-small-img, .show-small-img-popup {
+        width: 70px;
+        height: 70px;
+        margin-right: 6px;
+        cursor: pointer;
+        float: left;
+        }
+        .small-container2 .show-small-img:last-of-type{
+        margin-right: 0;
+        }
+        .outline {
+            border: 1px solid red;
+        }
+        .outline2 {
+            border: 2px solid blue;
+        }
+        .sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background-color: yellow;
+            padding: 50px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container outline" id="container">
+        <div class="row outline2">
+            <div class="col-6 outline">
+                <div class="sticky-top" style="">
+                    <div class="show magnifier-thumb-wrapper" id="show1" href="https://placeimg.com/1000/1000/animals">
+                        <a class="test-popup-link2" href="#popup"><img src="https://placeimg.com/1000/1000/animals" id="show-img"></a>
+                    </div>
+                    <div class="small-img">
+                        <div class="small-container" id="small-container">
+                            <div id="small-img-roll">
+                                
+                                {% for image in images %}
+                                    <img src={{ image }} class="show-small-img" alt="">
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 outline">
+                <div class="bg-info sticky-top p-3" style="position:relative; z-index:100; width: 400px; height: 400px">
+                    <div class="magnifier-preview outline" style="width: 400px; height: 400px" id="preview2">Starry Night Over The Rhone<br>by Vincent van Gogh</div>
+                </div>
+                <div style="position:absolute; left:0px; top:0px; z-index:90">
+                    {{ lorem }}
+                </div>
+                <div class="bg-light outline p-3" style="position:absolute; left:0px; top:500px; z-index:50">
+                    <img class="image-fluid" src="https://placeimg.com/1000/1000/animals" id="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+            <div class="outline sticky">
+                <div class="magnifier-preview outline" id="preview2a">Starry Night Over The Rhone<br>by Vincent van Gogh</div>
+            </div>
+
+    <div class="container mfp-hide white-popup outline" id="popup">
+       <div class="row">
+        <div class="col-8">
+            <div class="show" href="https://placeimg.com/1000/1000/animals">
+                <img src="https://placeimg.com/1000/1000/animals" id="show-img">
+            </div>              
+        </div>
+        
+        <div class="col-4">
+        <div class="">
+            <div class="" id="small-container">
+                <div id="small-img-roll">
+                    <div class = "row">
+                    {% for image in images %}
+                    <div class = ""><img src={{ image }} class="img-thumbnail show-small-img-popup" alt=""></div>
+                    <div class="w-25" style="height:auto; border:1px solid red"></div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        </div>
+
+     </div>   
+    </div>
+
+    <div class="container">
+        <div class="outline">
+        <!-- <a class="test-popup-link" href="#test-popup">Open popup</a> -->
+        <a class="test-popup-link" href="#popup">Open popup</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="gallery outline">
+            <div class="slider">
+                <div>
+                    <a class="magnifier-thumb-wrapper" href="http://en.wikipedia.org/wiki/File:Starry_Night_Over_the_Rhone.jpg">
+                        <img id="thumb" src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/200px-Starry_Night_Over_the_Rhone.jpg">
+                    </a>
+                </div>
+            </div>
+
+            <div class="magnifier-preview" id="preview" style="width: 200px; height: 133px">Starry Night Over The Rhone<br>by Vincent van Gogh</div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.test-popup-link, .test-popup-link2').magnificPopup({
+            type: 'inline'
+            // other options
+            });
+
+            $('.show, .show-small-img').magnificPopup({
+                items:{
+                    src: '#popup',
+                    type: 'inline'
+                }
+
+            // other options
+            });
+
+            $('.show').magnificPopup({
+                type: 'image',
+                mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+
+                zoom: {
+                    enabled: true, // By default it's false, so don't forget to enable it
+
+                    duration: 300, // duration of the effect, in milliseconds
+                    easing: 'ease-in-out', // CSS transition easing function
+
+                    // The "opener" function should return the element from which popup will be zoomed in
+                    // and to which popup will be scaled down
+                    // By defailt it looks for an image tag:
+                    opener: function(openerElement) {
+                    // openerElement is the element on which popup was initialized, in this case its <a> tag
+                    // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+                    return openerElement.is('img') ? openerElement : openerElement.find('img');
+                    }
+                }
+
+            });
+        })
+    </script>
+
+    <script type="text/javascript" src="scripts/Event.js"></script>
+    <script type="text/javascript" src="scripts/Magnifier.js"></script>
+    <script type="text/javascript">
+        // var evt = new Event(),
+        //     m = new Magnifier(evt);
+        //     m2 = new Magnifier(evt);
+    </script>
+
+    <script>
+        $(function(){
+
+            var evt = new Event(),
+                m = new Magnifier(evt);
+                m2 = new Magnifier(evt);
+
+            m.attach({
+                thumb: '#thumb',
+                large: 'http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/400px-Starry_Night_Over_the_Rhone.jpg',
+                largeWrapper: 'preview'
+            });
+            
+            // http://mark-rolich.github.io/Magnifier.js/
+            // can attach as many as thumbs to a single magnifier object and options can be set globally
+            // m.attach({
+            //     thumb: '#thumb2',
+            // })
+            // m.attach({
+            //     thumb: '#thumb3',
+            // })
+            // m.attach({
+            //     thumb: '#thumb',
+            //     large: 'http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/1200px-Starry_Night_Over_the_Rhone.jpg',
+            //     mode: 'inside',
+            //     zoom: 3,
+            //     zoomable: true
+            // });
+
+            // Support data attribute
+            // <div>
+            //     <a class="magnifier-thumb-wrapper" href="http://en.wikipedia.org/wiki/File:Starry_Night_Over_the_Rhone.jpg">
+            //         <img id="thumb" src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/200px-Starry_Night_Over_the_Rhone.jpg"
+            //         data-large-img-url="http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/400px-Starry_Night_Over_the_Rhone.jpg"
+            //         data-large-img-wrapper="preview">
+            //     </a>
+            //     <div class="magnifier-preview" id="preview" style="width: 200px; height: 133px">Starry Night Over The Rhone<br>by Vincent van Gogh</div>
+            // </div>
+            // m.attach({thumb: '#thumb'});
+
+            // It's possible to attach magnifier to multiple images assigning class name to thumb property and providing large images URL via data-large-img-url data attribute
+            // <img src="http://example.com/image1.jpg" class="img" data-large-img-url="http://example.com/large-image1.jpg">
+            // <img src="http://example.com/image2.jpg" class="img" data-large-img-url="http://example.com/large-image2.jpg">
+            // <img src="http://example.com/image3.jpg" class="img" data-large-img-url="http://example.com/large-image3.jpg">
+            // <div class="magnifier-preview" id="preview" style="width: 400px; height: 267px">Starry Night Over The Rhone<br>by Vincent van Gogh</div>
+            // m.attach({
+            //     thumb: '.img',
+            //     largeWrapper: 'preview'
+            // });
+
+            var cb = function(){
+                $("#preview2").parent().show();
+            }
+            var cb2 = function(){
+                $("#preview2").parent().hide();
+            }
+
+
+            m.attach({
+                thumb: '#show-img',
+                large: $("#show1").find('img').attr('src'),
+                largeWrapper: 'preview2',
+                // zoom: 2,
+                // zoomable: true,
+                onthumbenter: cb,
+                onthumbleave: cb2,
+            });
+            
+            // $("#preview2").find('img').addClass("img=fluid");
+            $("#preview2").parent().hide();
+
+
+        })
+    </script>
+</body>
+
+</html>

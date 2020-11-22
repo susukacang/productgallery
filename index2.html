@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+
+    <style>
+      .slider-nav-thumbnails .slick-slide {
+        opacity: 0.5;
+        background: blue;
+      }
+
+      .slider-nav-thumbnails .slick-slide.slick-active {
+        opacity: 1;
+        background: green;
+      }
+
+      .grid-container {
+        grid-column-gap: 50px;
+      }
+
+      .slider {
+        opacity: 0.25;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="row">
+        <div class="small-10 small-push-2 columns">
+          <!-- MAIN SLIDES -->
+          <div class="slider">
+            <figure>
+              <img src="http://placehold.it/1200x600&text=one" alt="One" />
+              <figcaption>
+                Caption for image one. <a href="#one">Read more</a>
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="http://placehold.it/1200x600&text=two" alt="One" />
+              <figcaption>
+                Caption for image two. <a href="#two">Read more</a>
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="http://placehold.it/1200x600&text=three" alt="One" />
+              <figcaption>
+                Caption for image three. <a href="#three">Read more</a>
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="http://placehold.it/1200x600&text=four" alt="One" />
+              <figcaption>
+                Caption for image four. <a href="#four">Read more</a>
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="http://placehold.it/1200x600&text=five" alt="One" />
+              <figcaption>
+                Caption for image five. <a href="#five">Read more</a>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="small-2 small-pull-10 columns">
+          <!-- THUMBNAILS -->
+          <div class="slider-nav-thumbnails">
+            <div>
+              <img src="http://placehold.it/50x50&text=one" alt="One" />
+            </div>
+            <div>
+              <img src="http://placehold.it/50x50&text=two" alt="Two" />
+            </div>
+            <div>
+              <img src="http://placehold.it/50x50&text=three" alt="Three" />
+            </div>
+            <div>
+              <img src="http://placehold.it/50x50&text=four" alt="Four" />
+            </div>
+            <div>
+              <img src="http://placehold.it/50x50&text=five" alt="Five" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        $('.slider').slick({
+ 	slidesToShow: 1,
+ 	slidesToScroll: 1,
+ 	arrows: false,
+ 	fade: true,
+ 	asNavFor: '.slider-nav-thumbnails',
+ });
+
+ $('.slider-nav-thumbnails').slick({
+ 	slidesToShow: 5,
+ 	slidesToScroll: 1,
+ 	asNavFor: '.slider',
+ 	dots: true,
+ 	focusOnSelect: true,
+  vertical: true
+ });
+
+ // Remove active class from all thumbnail slides
+ $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+
+ // Set active class to first thumbnail slides
+ $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
+
+ // On before slide change match active thumbnail to current slide
+ $('.slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+ 	var mySlideNumber = nextSlide;
+ 	$('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+ 	$('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+});
+    </script>
+  </body>
+</html>

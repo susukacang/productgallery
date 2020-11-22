@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Product Gallery With Image Zoom Example</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js" integrity="sha512-C1zvdb9R55RAkl6xCLTPt+Wmcz6s+ccOvcr6G57lbm8M2fbgn2SUjUJbQ13fEyjuLViwe97uJvwa1EUf4F1Akw==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" />
+  
+  <style>
+  body { background-color: #fafafa; min-height: 100vh;}
+  .container { margin: 150px auto; max-width: 960px; }
+</style>
+</head>
+<body>
+  <div class="container" id="container">
+    <h1>Product Gallery With Image Zoom Example</h1>
+  <div class="show" href="https://placeimg.com/1000/1000/animals">
+    <img src="https://placeimg.com/1000/1000/animals" id="show-img">
+  </div>
+  <div class="small-img">
+    <img src="images/online_icon_right@2x.png" class="icon-left" alt="" id="prev-img">
+    <div class="small-container" id="small-container">
+      <div id="small-img-roll">
+        <img src="https://placeimg.com/1000/1000/animals" class="show-small-img" alt="" data-mfp-src="https://placeimg.com/1000/1000/animals">
+        <img src="https://placeimg.com/1000/1000/arch" class="show-small-img" alt="">
+        <img src="https://placeimg.com/1000/1000/nature" class="show-small-img" alt="">
+        <img src="https://placeimg.com/1000/1000/people" class="show-small-img" alt="">
+        <img src="https://placeimg.com/1000/1000/tech" class="show-small-img" alt="">
+        <img src="https://picsum.photos/1000/1000/?random" class="show-small-img" alt="">
+      </div>
+    </div>
+    <img src="images/online_icon_right@2x.png" class="icon-right" alt="" id="next-img">
+  </div>
+</div>
+
+<style>
+  .white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+}
+.mainimg {
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 5px;
+}
+</style>
+
+<div>
+  <!-- <a class="test-popup-link" href="#test-popup">Open popup</a> -->
+  <a class="test-popup-link" href="#container">Open popup</a>
+
+</div>
+
+<div id="test-popup" class="white-popup mfp-hide">
+  Popup content
+  <img src="https://picsum.photos/1000/1000/?random" class="mainimg" alt="">
+  <img src="https://picsum.photos/1000/1000/?random" class="mainimg" alt="">
+</div>
+
+
+<!-- <div id='xx' class="test-popup-link2" href="https://picsum.photos/1000/1000/?random">Open image</div> -->
+
+<script src="scripts/zoom-image.js"></script>
+
+<script>
+$(document).ready(function() {
+
+  $('.show, .show-small-img').magnificPopup({
+     type: 'image'
+  // other options
+  });
+
+$('.show-small-img').click(function(){
+  $('.show').attr('href', $(this).attr('src'));
+})
+
+$('#next-img').click(function(){
+  $('.show').attr('href', $(".show-small-img[alt='now']").next().attr('src'));
+})
+
+$('#prev-img').click(function(){
+  $('.show').attr('href', $(".show-small-img[alt='now']").prev().attr('src'));
+})
+
+  $('.test-popup-link').magnificPopup({
+  type: 'inline'
+  // other options
+  });
+
+  $('.test-popup-link22').magnificPopup({
+  type: 'image'
+  // other options
+  });
+
+  $('.test-popup-link2').magnificPopup({
+  type: 'image'
+  // other options
+  });
+
+  $('.test-popup-link2').click(function(){
+      console.log('click');
+      $.magnificPopup.open({
+        items: {
+          src: '#xx'
+        },
+        type: 'inline'
+        // other options
+      });
+  })
+
+  $('.test-popup-link3').click(function(){
+      console.log('click');
+      $.magnificPopup.open({
+        items: {
+          src: '#xx'
+        },
+        type: 'inline'
+        // other options
+      });
+  })
+
+});
+
+</script>
+
+  <!-- <script src="scripts/zoom-image.js"></script> -->
+  <script src="scripts/main.js"></script>
+</body>
+</html>

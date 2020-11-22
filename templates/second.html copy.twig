@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js" integrity="sha512-C1zvdb9R55RAkl6xCLTPt+Wmcz6s+ccOvcr6G57lbm8M2fbgn2SUjUJbQ13fEyjuLViwe97uJvwa1EUf4F1Akw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" />
+  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+
+        body { background-color: #fafafa; min-height: 100vh;}
+        .container { margin: 150px auto; max-width: 960px; }
+        .white-popup {
+            position: relative;
+            background: #FFF;
+            padding: 20px;
+            width: auto;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+.small-container2{
+  width: 70px;
+  height: 310px;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.small-container2 div{
+  width: 800%;
+  position: relative;
+}
+
+.small-container2 .show-small-img{
+  width: 70px;
+  height: 70px;
+  margin-right: 6px;
+  cursor: pointer;
+  float: left;
+}
+.small-container2 .show-small-img:last-of-type{
+  margin-right: 0;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <p>
+     The array has {{ words | length }} elements
+    </p>
+
+    <p>
+     Joined array elements: {{ words | join(',') }} 
+    </p>    
+
+    <p>
+     {{ sentence | title }} 
+    </p> 
+
+    <div class="container" id="container">
+        <div class="show" id="show1" href="https://placeimg.com/1000/1000/animals">
+            <img src="https://placeimg.com/1000/1000/anwidthimals" id="show-img">
+        </div>
+        <div class="small-img">
+            <div class="small-container" id="small-container">
+                <div id="small-img-roll">
+                    
+                    {% for image in images %}
+                        <img src={{ image }} class="show-small-img" alt="">
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mfp-hide white-popup" id="popup">
+    <div class = "row">
+    
+    
+    
+
+
+        <div class = "col-8">
+            <div class="show" href="https://placeimg.com/1000/1000/animals">
+                <img src="https://placeimg.com/1000/1000/animals" id="show-img">
+            </div>      
+        
+        
+        </div>
+
+        
+        <div class = "col-4">
+        <div class="small-img">
+            <div class="" id="small-container">
+                <div id="small-img-roll">
+                    
+                    {% for image in images %}
+                    <div class = "row">
+                    <div class="col-4">
+                        <img style="width:100%;" src={{ image }} class="show-small-img" alt=""></div></div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        </div>
+
+     </div>   
+    </div>
+
+    <div>
+    <!-- <a class="test-popup-link" href="#test-popup">Open popup</a> -->
+    <a class="test-popup-link" href="#popup">Open popup</a>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        $('.test-popup-link').magnificPopup({
+        type: 'inline'
+        // other options
+        });
+
+        $('.show, .show-small-img').magnificPopup({
+            items:{
+                src: '#popup',
+                type: 'inline'
+            }
+
+        // other options
+        });
+    })
+    </script>
+</body>
+
+</html>

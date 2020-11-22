@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js" integrity="sha512-C1zvdb9R55RAkl6xCLTPt+Wmcz6s+ccOvcr6G57lbm8M2fbgn2SUjUJbQ13fEyjuLViwe97uJvwa1EUf4F1Akw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" />
+  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/magnifier.css">
+
+
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+// Add the new slick-theme.css if you want the default styling
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+
+    <style>
+        .gallery {
+            width: 510px;
+            margin: 0 auto;
+        }
+        .gallery .slider {
+            float: left;
+            border: solid 1px #aaa;
+            width: 250px;
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .gallery .magnifier-preview {
+            float: left;
+            width: 250px;
+            border: solid 1px #aaa;
+            border-left: 0;
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+
+    <style>
+
+        body { background-color: #fafafa; min-height: 100vh;}
+        .container { margin: 150px auto; max-width: 960px; }
+        .white-popup {
+            position: relative;
+            background: #FFF;
+            padding: 20px;
+            width: auto;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .small-container2{
+        width: 70px;
+        height: 310px;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;rela
+        }
+        .small-container2 div{
+        width: 800%;
+        position: relative;
+        }
+
+        .small-container2 .show-small-img, .show-small-img-popup {
+        width: 70px;
+        height: 70px;
+        margin-right: 6px;
+        cursor: pointer;
+        float: left;
+        }
+        .small-container2 .show-small-img:last-of-type{
+        margin-right: 0;
+        }
+        .outline {
+            border: 1px solid red;
+        }
+        .outline2 {
+            border: 2px solid blue;
+        }
+        .sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background-color: yellow;
+            padding: 50px;
+            font-size: 20px;
+        }
+    </style>
+
+        <style>
+        .galleryx {
+            width: 510px;
+            margin: 0 auto;
+        }
+        .galleryx .sliderx {
+            float: left;
+            border: solid 1px #aaa;
+            width: 250px;
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .galleryx .magnifier-preview {
+            float: left;
+            width: 250px;
+            border: solid 1px #aaa;
+            border-left: 0;
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .sliderx {
+            float: left;
+            border: solid 1px #aaa;
+            width: 500px; height: 500px;
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container outline" id="container">
+        <div class="row outline2">
+            <div class="col-6 outline">
+                <div class="sticky-top" style="">
+                    {# main image #}
+                    <div class="show magnifier-thumb-wrapper" id="show1" href="images/placeimg/1000/1000/animals/animals.jpeg">
+                        <a class="test-popup-link2" href="#popup"><img src="images/placeimg/400/400/animals/animals.jpeg" id="show-img"></a>
+                    </div>
+                    {# carousel #}
+                    <div class="small-img">
+                        <div class="small-container" id="small-container">
+                            <div id="small-img-roll">
+                                
+                                {% for image in images %}
+                                    <img src={{ image }} class="show-small-img" alt="">
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {# zoom preview #}
+            <div class="col-6 outline">
+                <div class="bg-info sticky-top p-3" style="position:relative; z-index:100; width: 600px; height: 450px">
+                    <div class="magnifier-preview outline" style="width: 400px; height: 400px" id="preview2">Starry Night Over The Rhone<br>by Vincent van Gogh</div>
+                </div>
+                <div style="position:absolute; left:0px; top:0px; z-index:90">
+                    {{ lorem }}
+                </div>        
+                {# <div class="bg-light outline p-3" style="position:absolute; left:0px; top:500px; z-index:50">
+                    <img class="image-fluid" src="https://placeimg.com/1000/1000/animals" id="">
+                </div> #}
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div class="container mfp-hide white-popup outline" id="popup">
+       <div class="row">
+            <div class="col-8">
+                <div class="show" href="https://placeimg.com/1000/1000/animals">
+                    <img src="https://placeimg.com/1000/1000/animals" id="show-img">
+                </div>              
+            </div>
+        
+            <div class="col-4">
+                <div class="">
+                    <div class="" id="small-container">
+                        <div id="small-img-roll">
+                            <div class = "row">
+                            {% for image in images %}
+                            <div class = ""><img src={{ image }} class="img-thumbnail show-small-img-popup" alt=""></div>
+                            <div class="w-25" style="height:auto; border:1px solid red"></div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>   
+    </div>
+
+    <div class="container mfp-hide white-popup" id="popup">
+        <div class = "row">
+            <div class = "col-8">
+                <div class="show" href="https://placeimg.com/1000/1000/animals">
+                    <img src="https://placeimg.com/1000/1000/animals" id="show-img">
+                </div>      
+            </div>
+    
+            <div class = "col-4">
+                <div class="small-img">
+                    <div class="" id="small-container">
+                        <div id="small-img-roll">
+                            
+                            {% for image in images %}
+                            <div class = "row">
+                            <div class="col-4">
+                                <img style="width:100%;" src={{ image }} class="show-small-img" alt=""></div></div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+
+    <div class="grid-container">
+    <div class="row">
+        <div class="small-10 small-push-2 columns">
+        <!-- MAIN SLIDES -->
+        <div class="slider">
+            <figure>
+            <img src="http://placehold.it/1200x600&text=one" alt="One">
+            <figcaption>Caption for image one. <a href="#one">Read more</a>
+            </figcaption>
+            </figure>
+            <figure>
+            <img src="http://placehold.it/1200x600&text=two" alt="One">
+            <figcaption>Caption for image two. <a href="#two">Read more</a>
+            </figcaption>
+            </figure>
+            <figure>
+            <img src="http://placehold.it/1200x600&text=three" alt="One">
+            <figcaption>Caption for image three. <a href="#three">Read more</a>
+            </figcaption>
+            </figure>
+            <figure>
+            <img src="http://placehold.it/1200x600&text=four" alt="One">
+            <figcaption>Caption for image four. <a href="#four">Read more</a>
+            </figcaption>
+            </figure>
+            <figure>
+            <img src="http://placehold.it/1200x600&text=five" alt="One">
+            <figcaption>Caption for image five. <a href="#five">Read more</a>
+            </figcaption>
+            </figure>
+        </div>
+        </div>
+        <div class="small-2 small-pull-10 columns">
+
+        <!-- THUMBNAILS -->
+        <div class="slider-nav-thumbnails">
+            <div><img src="http://placehold.it/50x50&text=one" alt="One">
+            </div>
+            <div><img src="http://placehold.it/50x50&text=two" alt="Two">
+            </div>
+            <div><img src="http://placehold.it/50x50&text=three" alt="Three">
+            </div>
+            <div><img src="http://placehold.it/50x50&text=four" alt="Four">
+            </div>
+            <div><img src="http://placehold.it/50x50&text=five" alt="Five">
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script type="text/javascript" src="scripts/Event.js"></script>
+    <script type="text/javascript" src="scripts/Magnifier.js"></script>
+    <script type="text/javascript">
+
+    </script>
+
+
+
+
+    <script>
+        $(function(){
+
+            var evt = new Event(),
+                m = new Magnifier(evt);
+            
+            var cb = function(){
+                $("#preview2").parent().show();
+            }
+            var cb2 = function(){
+                $("#preview2").parent().hide();
+            }
+
+
+            m.attach({
+                thumb: '#show-img',
+                // large: $("#show1").find('img').attr('src'),
+                // large: $("#show1").attr('href'),
+                large: "images/placeimg/1000/1000/animals/animals.jpeg",
+                largeWrapper: 'preview2',
+                // zoom: 2,
+                // zoomable: true,
+                onthumbenter: cb,
+                onthumbleave: cb2,
+            });
+            
+            // $("#preview2").find('img').addClass("img=fluid");
+            $("#preview2").parent().hide();
+
+
+            $('.show, .show-small-img').magnificPopup({
+                items:{
+                    src: '#popup',
+                    type: 'inline'
+                }
+
+            // other options
+            });
+
+
+        })
+    </script>
+
+{# https://jsfiddle.net/aiskacang/rhvs4e9w/30/ #}
+
+    <style>
+    .slider-nav-thumbnails .slick-slide {
+    opacity: 0.5;
+    background: blue;
+    }
+
+    .slider-nav-thumbnails .slick-slide.slick-active {
+    opacity: 1;
+    background: green;
+    }
+
+    .grid-container {
+    grid-column-gap: 50px;
+    }
+
+    .slider {
+    opacity: 0.25;
+    background: red;
+    }
+
+    </style>
+
+
+    <script>
+        $(function(){
+                $('.slider').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                fade: true,
+                asNavFor: '.slider-nav-thumbnails',
+            });
+
+            $('.slider-nav-thumbnails').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                asNavFor: '.slider',
+                dots: true,
+                focusOnSelect: true,
+            vertical: true
+            });
+
+            // Remove active class from all thumbnail slides
+            $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+
+            // Set active class to first thumbnail slides
+            $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
+
+            // On before slide change match active thumbnail to current slide
+            $('.slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                var mySlideNumber = nextSlide;
+                $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+                $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+            });
+    
+        })
+    </script>
+</body>
+
+</html>

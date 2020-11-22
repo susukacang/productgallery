@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/css/foundation.css" integrity="sha512-XWAIeKwAyVE1r3oF7x904eNPISzaggYYBJahGlBzAE8jww7OgbijQ3MthDN7jWFKjHu+kW1p5bCfK3BmLSfhWw==" crossorigin="anonymous" />    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/js/foundation.min.js" integrity="sha512-9cXmvmK1gIDw3Tol6Xg/1SUls/CvBMgedu1aDjT519sQzy7jk+LoezyQqlzClW2LgXww4xEyuqtofg7PtWteLQ==" crossorigin="anonymous"></script>
+    <style>
+      .slider-nav-thumbnails .slick-slide {
+        opacity: 0.5;
+      }
+
+      .slider-nav-thumbnails .slick-slide.slick-active {
+        opacity: 1;
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="large-7 medium-8 columns">
+        <!-- MAIN SLIDES -->
+        <div class="slider">
+          <figure>
+            <img src="http://placehold.it/1200x600&text=one" alt="One" />
+            <figcaption>
+              Caption for image one. <a href="#one">Read more</a>
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="http://placehold.it/1200x600&text=two" alt="One" />
+            <figcaption>
+              Caption for image two. <a href="#two">Read more</a>
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="http://placehold.it/1200x600&text=three" alt="One" />
+            <figcaption>
+              Caption for image three. <a href="#three">Read more</a>
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="http://placehold.it/1200x600&text=four" alt="One" />
+            <figcaption>
+              Caption for image four. <a href="#four">Read more</a>
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="http://placehold.it/1200x600&text=five" alt="One" />
+            <figcaption>
+              Caption for image five. <a href="#five">Read more</a>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- THUMBNAILS -->
+        <div class="slider-nav-thumbnails">
+          <div>
+            <img src="http://placehold.it/1200x600&text=one" alt="One" />
+          </div>
+          <div>
+            <img src="http://placehold.it/1200x600&text=two" alt="Two" />
+          </div>
+          <div>
+            <img src="http://placehold.it/1200x600&text=three" alt="Three" />
+          </div>
+          <div>
+            <img src="http://placehold.it/1200x600&text=four" alt="Four" />
+          </div>
+          <div>
+            <img src="http://placehold.it/1200x600&text=five" alt="Five" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+       $(function(){
+        $(".slider").slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: false,
+                asNavFor: ".slider-nav-thumbnails",
+            });
+
+            $(".slider-nav-thumbnails").slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                asNavFor: ".slider",
+                dots: true,
+                focusOnSelect: true,
+            });
+
+            // Remove active class from all thumbnail slides
+            $(".slider-nav-thumbnails .slick-slide").removeClass("slick-active");
+
+            // Set active class to first thumbnail slides
+            $(".slider-nav-thumbnails .slick-slide").eq(0).addClass("slick-active");
+
+            // On before slide change match active thumbnail to current slide
+            $(".slider").on("beforeChange", function (event, slick, currentSlide, nextSlide) {
+                var mySlideNumber = nextSlide;
+                $(".slider-nav-thumbnails .slick-slide").removeClass("slick-active");
+                $(".slider-nav-thumbnails .slick-slide").eq(mySlideNumber).addClass("slick-active");
+            });
+
+        })
+
+    </script>
+  </body>
+</html>
